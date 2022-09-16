@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments :: header">
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <div class="handle-error-message">
+                                <span th:if = "${emailError}">
+                                    <p th:text="${emailError}" ></p>
+                                </span>
+                            </div>
+                            <div class="handle-error-message">
+                                <span th:if = "${errors}">
+                                    <p th:text="${errors}" ></p>
+                                </span>
+                            </div>
+                            <div class="handle-success-message">
+                                <span th:if = "${sucess}">
+                                    <p th:text="${sucess}" ></p>
+                                </span>
+                            </div>
+                            <div class="handle-error-message">
+                                <span th:if = "${passwordError}">
+                                    <p th:text="${passwordError}" ></p>
+                                </span>
+                            </div>
+
+                            <!--/*@thymesVar id="adminDto" type=""*/-->
+                            <form th:action="@{/register-new}" th:object="${adminDto}" method="POST" class="user"
+                                  onsubmit="return validatePasswordFunction()">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="firstName"
+                                               onkeyup="validateFirstName()"
+                                            placeholder="First Name" name="firstName" >
+                                        <span id="firstName-error" style="color: red"></span>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="lastName"  onkeyup="validateLastName()"
+                                            placeholder="Last Name" name="lastName">
+                                        <span id="lastName-error" style="color: red"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="username"
+                                           onkeyup="validateEmail()" placeholder="Email Address" name="username">
+                                    <span id="email-error" style="color: red"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="password" placeholder="Password" name="password" value="">
+                                        <span id="password-error"></span>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="passwords" name="repeatPassword" placeholder="Re-type Password" value="">
+                                        <span id="repassword-error"></span>
+                                    </div>
+
+                                </div>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account"
+                                       onclick="validateRegisterForm()"/>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" th:href="@{/forgot-password}">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" th:href="@{/login}">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:replace="fragments:: script"></div>
+
+
+
+</body>
+
+</html>
