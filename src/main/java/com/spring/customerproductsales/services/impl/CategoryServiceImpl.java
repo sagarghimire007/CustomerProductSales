@@ -15,8 +15,8 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> findAll() {
-        return categoryRepository.findAll();
+    public List<Category> findAllOrderByCategoryName() {
+        return categoryRepository.findAllOrderByCategoryName();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category categoryUpdate = null;
         try {
-            categoryUpdate = categoryRepository.findById(category.getId()).get();
+            categoryUpdate = categoryRepository.getById(category.getId());
             categoryUpdate.setCategoryName(category.getCategoryName());
             categoryUpdate.setIsActivated(category.isActivated());
             categoryUpdate.setIsDeleted(category.isDeleted());

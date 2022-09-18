@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+
    @Query("select p from Product p where p.isActivated = true and p.isDeleted = false")
     List<Product> findAllByActivated();
 }

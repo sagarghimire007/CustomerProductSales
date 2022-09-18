@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> findAll();
+    List<Category> findAllOrderByCategoryName();
 
     Category save(Category category);
 

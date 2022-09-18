@@ -25,7 +25,7 @@ public class CategoryController {
             return "redirect:/login";
         }
 
-        List<Category> categoryList = categoryService.findAll();
+        List<Category> categoryList = categoryService.findAllOrderByCategoryName();
         model.addAttribute("categoriesList", categoryList);
         model.addAttribute("size", categoryList.size());
         model.addAttribute("title", "Category");

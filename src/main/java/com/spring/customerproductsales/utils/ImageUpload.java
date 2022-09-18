@@ -27,6 +27,8 @@ public class ImageUpload {
      return isUpload;
     }
 
+
+    // check whether the image is already existed or not
     public boolean checkExisted(MultipartFile imageProduct){
         boolean isExisted = false;
         try{

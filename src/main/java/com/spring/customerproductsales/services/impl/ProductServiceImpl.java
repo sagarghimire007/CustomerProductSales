@@ -44,6 +44,9 @@ public class ProductServiceImpl implements ProductService {
             productDto.setSalesPrice(product.getSalesPrice());
             productDto.setCurrentQuantity(product.getCurrentQuantity());
             productDto.setCategory(product.getCategory());
+            productDto.setActivated(product.isActivated());
+            product.setDeleted(product.isDeleted());
+
 //            productDto.setImage(product.getImage());
 
             productDtoList.add(productDto);
@@ -90,9 +93,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product save(Product product) {
+        product.getImage();
+        return productRepository.save(product);
+    }
+
+    @Override
     public Product update(ProductDto productDto) {
         try {
-            Product product = productRepository.getById(productDto.getId());
+            Product product = productRepository.findById(productDto.getId()).get();
             // image check
             product.setProductName(productDto.getProductName());
             product.setDescription(productDto.getDescription());
@@ -111,12 +120,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(Integer id) {
-
+        Product product = productRepository.findById(id).get();
+        product.setDeleted(true);
+        product.setActivated(false);
+        productRepository.save(product);
     }
 
     @Override
     public void enableById(Integer id) {
-
+        Product product = productRepository.findById(id).get();
+        product.setDeleted(false);
+        product.setActivated(true);
+        productRepository.save(product);
     }
 
     @Override
@@ -126,7 +141,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto findById(Integer id) {
-        Product product = productRepository.getById(id);
+        Product product = productRepository.findById(id).get();
         ProductDto productDto = new ProductDto();
 
         productDto.setProductName(product.getProductName());

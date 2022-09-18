@@ -91,10 +91,10 @@
                             </div>
 
                             <div class="row mt-4 ml-2">
-<!--                                <div class="col-md-4">-->
-<!--                                    <label>Product Image</label>-->
-<!--                                    <input type="file" accept="image/*" class="form-control-file" name="image">-->
-<!--                                </div>-->
+                                <div class="col-md-4">
+                                    <label>Product Image</label>
+                                    <input class="form-control form-control-lg" name="image" accept="image/*" type="file" />
+                                </div>
                                 <div class="col-md-4">
                                     <label for="productDescription">Product Description</label>
                                     <textarea class="form-control" type="text"
@@ -109,6 +109,7 @@
                                     <input type="submit" class="btn btn-primary" value="Save">
                                 </div>
                             </div>
+                            <input type="hidden" name="imageName" th:value="${productDto.image}">
                         </form>
                     </div>
 

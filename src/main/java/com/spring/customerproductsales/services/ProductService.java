@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product save(MultipartFile imageProduct, ProductDto productDto);
 
-//    Product save(ProductDto productDto);
+    Product save(Product product);
 
     Product update(ProductDto productDto);
 
